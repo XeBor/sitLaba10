@@ -7,8 +7,9 @@ import ReactDOM from 'react-dom';
 import Pages from './pages';
 import injectStyles from './styles';
 import gql from 'graphql-tag';
-const cache = new InMemoryCache();
+import { resolvers, typeDefs } from './resolvers';
 
+const cache = new InMemoryCache();
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 	cache,
 	link: new HttpLink({
@@ -17,6 +18,8 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 		authorization: localStorage.getItem('token'),
 	  },
 	}),
+  typeDefs,
+  resolvers,
 });
 
 cache.writeData({
