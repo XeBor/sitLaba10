@@ -20,13 +20,15 @@ export const GET_MY_TRIPS = gql`
   ${LAUNCH_TILE_DATA}
 `;
 
-
 interface ProfileProps extends RouteComponentProps {}
 
 const Profile: React.FC<ProfileProps> = () => {
-  const { data, loading, error } = useQuery<GetMyTripsTypes.GetMyTrips, any>(
+  const {
+    data,
+    loading,
+    error
+  } = useQuery<GetMyTripsTypes.GetMyTrips>(
     GET_MY_TRIPS,
-
     { fetchPolicy: "network-only" }
   );
   if (loading) return <Loading />;
